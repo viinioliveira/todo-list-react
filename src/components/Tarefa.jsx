@@ -1,11 +1,14 @@
 import { Tr, Td } from "@chakra-ui/react";
 
 export function Tarefa(props) {
-  console.log("a", props);
-
   return (
-    <Tr>
-      <Td>{props.tarefa.descricao}</Td>
-    </Tr>
+    <div>
+      <Tr>
+        <Td>{props.tarefa.descricao}</Td>
+        <Td>
+          <span class="material-symbols-outlined">delete</span>
+        </Td>
+      </Tr>
+    </div>
   );
 }
