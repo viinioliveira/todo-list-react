@@ -11,7 +11,9 @@ import {
 } from "@chakra-ui/react";
 import { Tarefa } from "./Tarefa";
 
-export function TabelaRaiz() {
+export function TabelaRaiz(props) {
+  console.log("raiz", props);
+
   return (
     <TableContainer>
       <Table variant="simple">
@@ -21,7 +23,9 @@ export function TabelaRaiz() {
           </Tr>
         </Thead>
         <Tbody>
-          <Tarefa />
+          {props.tarefas.map((tarefa, index) => {
+            return <Tarefa key={index} tarefa={tarefa} />;
+          })}
         </Tbody>
       </Table>
     </TableContainer>

@@ -1,9 +1,11 @@
 import { Tr, Td } from "@chakra-ui/react";
 
-export function Tarefa() {
+export function Tarefa(props) {
+  console.log("a", props);
+
   return (
     <Tr>
-      <Td>teste</Td>
+      <Td>{props.tarefa.descricao}</Td>
     </Tr>
   );
 }
