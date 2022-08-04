@@ -3,8 +3,15 @@ import { EntradaDados } from "../components/EntradaDados";
 import { TabelaRaiz } from "../components/TabelaRaiz";
 
 export function Home() {
+  let estadoInicial = [];
+
+  //verifica se tem algo no localstorage
+  if (localStorage["tarefas"])
+    estadoInicial = JSON.parse(localStorage.getItem("tarefas"));
+  else estadoInicial = [];
+
   const [descricao, setDescricao] = useState("");
-  const [tarefas, setTarefas] = useState([]);
+  const [tarefas, setTarefas] = useState(estadoInicial);
 
   function salvarDados() {
     const tarefa = {
@@ -16,17 +23,21 @@ export function Home() {
   }
 
   useEffect(() => {
-    console.log(tarefas);
-    localStorage.setItem("tarefas", JSON.stringify(tarefas));
-  }, [tarefas]);
+    localStorage.setItem("tarefas", JSON.stringify(tarefas)), [tarefas];
+  });
 
-  let maior = 0;
   function geraID() {
-    let dados = JSON.parse(localStorage.getItem("tarefas") || []);
-    dados.forEach((tarefa) => {
-      if (tarefa.id > maior) maior = tarefa.id;
-    });
-    return maior;
+    let maior = 0;
+    if (localStorage["tarefas"]) {
+      let dados = JSON.parse(localStorage.getItem("tarefas"));
+      dados.forEach((tarefa) => {
+        if (tarefa.id > maior) maior = tarefa.id;
+      });
+      return maior;
+    } else {
+      console.log("sem dados");
+      return 0;
+    }
   }
 
   return (

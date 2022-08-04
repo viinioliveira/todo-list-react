@@ -9,11 +9,10 @@ import {
   TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { Tarefa } from "./Tarefa";
 
 export function TabelaRaiz(props) {
-  console.log("raiz", props);
-
   return (
     <TableContainer>
       <Table variant="simple">
