@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { EntradaDados } from "../components/EntradaDados";
 import { TabelaRaiz } from "../components/TabelaRaiz";
+import { useToast } from "@chakra-ui/react";
+import styles from "../styles/home.css";
 
 export function Home() {
+  const toast = useToast();
   let estadoInicial = [];
 
   //verifica se tem algo no localstorage
@@ -14,12 +17,20 @@ export function Home() {
   const [tarefas, setTarefas] = useState(estadoInicial);
 
   function salvarDados() {
-    const tarefa = {
-      id: geraID() + 1,
-      validado: false,
-      descricao,
-    };
-    setTarefas([...tarefas, tarefa]);
+    if (descricao != "") {
+      const tarefa = {
+        id: geraID() + 1,
+        validado: false,
+        descricao,
+      };
+      setTarefas([...tarefas, tarefa]);
+    } else {
+      return toast({
+        title: "Digite uma tarefa antes de adicionar",
+        status: "warning",
+        isClosable: true,
+      });
+    }
   }
 
   useEffect(() => {
@@ -35,7 +46,6 @@ export function Home() {
       });
       return maior;
     } else {
-      console.log("sem dados");
       return 0;
     }
   }
@@ -47,7 +57,7 @@ export function Home() {
         setDescricao={setDescricao}
         salvarDados={salvarDados}
       />
-      <TabelaRaiz tarefas={tarefas} />
+      <TabelaRaiz tarefas={tarefas} excluirTarefa={excluirTarefa} />
     </div>
   );
 }

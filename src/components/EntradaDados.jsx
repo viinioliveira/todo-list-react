@@ -1,5 +1,6 @@
 import { Input } from "@chakra-ui/react";
 import { Button, ButtonGroup } from "@chakra-ui/react";
+import styles from "../styles/entradaDados.css";
 
 export function EntradaDados(props) {
   return (

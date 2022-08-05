@@ -1,0 +1,8 @@
+.material-symbols-outlined {
+    cursor: pointer;
+}
+
+.lixeira {
+    display: flex;
+    justify-content: flex-end;
+}

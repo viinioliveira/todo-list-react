@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { Tarefa } from "./Tarefa";
+import styles from "../styles/tabelaRaiz.css";
 
 export function TabelaRaiz(props) {
   return (
