@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { EntradaDados } from "../components/EntradaDados";
 import { TabelaRaiz } from "../components/TabelaRaiz";
 import { useToast } from "@chakra-ui/react";
+import { Tarefa } from "../components/Tarefa";
 import styles from "../styles/home.css";
 
 export function Home() {
@@ -15,12 +16,14 @@ export function Home() {
 
   const [descricao, setDescricao] = useState("");
   const [tarefas, setTarefas] = useState(estadoInicial);
+  const [style, setStyle] = useState("descricao");
 
   function salvarDados() {
     if (descricao != "") {
       const tarefa = {
         id: geraID() + 1,
         validado: false,
+        excluido: false,
         descricao,
       };
       setTarefas([...tarefas, tarefa]);
@@ -31,6 +34,26 @@ export function Home() {
         isClosable: true,
       });
     }
+  }
+
+  function excluirTarefa(idTarefa) {
+    tarefas.map((tarefa) => {
+      if (tarefa.id == idTarefa) {
+        tarefa.excluido = true;
+      }
+      localStorage.setItem("tarefas", JSON.stringify(tarefas));
+      setTarefas([...tarefas, tarefa]);
+    });
+  }
+
+  function validarTarefa(idTarefa) {
+    tarefas.map((tarefa) => {
+      if (tarefa.id == idTarefa) {
+        tarefa.validado = true;
+        setStyle("validado");
+      }
+      localStorage.setItem("tarefas", JSON.stringify(tarefas));
+    });
   }
 
   useEffect(() => {
@@ -57,7 +80,12 @@ export function Home() {
         setDescricao={setDescricao}
         salvarDados={salvarDados}
       />
-      <TabelaRaiz tarefas={tarefas} excluirTarefa={excluirTarefa} />
+      <TabelaRaiz
+        style={style}
+        tarefas={tarefas}
+        excluirTarefa={excluirTarefa}
+        validarTarefa={validarTarefa}
+      />
     </div>
   );
 }

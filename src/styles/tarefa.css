@@ -2,7 +2,11 @@
     cursor: pointer;
 }
 
-.lixeira {
-    display: flex;
-    justify-content: flex-end;
+.validado {
+    background-color: green;
+    color: white;
+}
+
+.descricao {
+    width: 100%;
 }

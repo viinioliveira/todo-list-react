@@ -9,7 +9,7 @@ import {
   TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Tarefa } from "./Tarefa";
 import styles from "../styles/tabelaRaiz.css";
 
@@ -24,7 +24,17 @@ export function TabelaRaiz(props) {
         </Thead>
         <Tbody>
           {props.tarefas.map((tarefa, index) => {
-            return <Tarefa key={index} tarefa={tarefa} />;
+            if (tarefa.excluido != true) {
+              return (
+                <Tarefa
+                  style={props.style}
+                  key={index}
+                  tarefa={tarefa}
+                  excluirTarefa={props.excluirTarefa}
+                  validarTarefa={props.validarTarefa}
+                />
+              );
+            }
           })}
         </Tbody>
       </Table>
