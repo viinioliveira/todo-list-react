@@ -16,7 +16,6 @@ export function Home() {
 
   const [descricao, setDescricao] = useState("");
   const [tarefas, setTarefas] = useState(estadoInicial);
-  const [style, setStyle] = useState("descricao");
 
   function salvarDados() {
     if (descricao != "") {
@@ -37,23 +36,33 @@ export function Home() {
   }
 
   function excluirTarefa(idTarefa) {
-    tarefas.map((tarefa) => {
+    const novoArrTarefas = tarefas.map((tarefa) => {
       if (tarefa.id == idTarefa) {
-        tarefa.excluido = true;
+        return {
+          ...tarefa,
+          excluido: true,
+        };
       }
-      localStorage.setItem("tarefas", JSON.stringify(tarefas));
-      setTarefas([...tarefas, tarefa]);
+
+      return tarefa;
     });
+    setTarefas(novoArrTarefas);
+    localStorage.setItem("tarefas", JSON.stringify(novoArrTarefas));
   }
 
   function validarTarefa(idTarefa) {
-    tarefas.map((tarefa) => {
+    const novoArrTarefas = tarefas.map((tarefa) => {
       if (tarefa.id == idTarefa) {
-        tarefa.validado = true;
-        setStyle("validado");
+        return {
+          ...tarefa,
+          validado: !tarefa.validado,
+        };
       }
-      localStorage.setItem("tarefas", JSON.stringify(tarefas));
+
+      return tarefa;
     });
+    setTarefas(novoArrTarefas);
+    localStorage.setItem("tarefas", JSON.stringify(novoArrTarefas));
   }
 
   useEffect(() => {
@@ -81,7 +90,6 @@ export function Home() {
         salvarDados={salvarDados}
       />
       <TabelaRaiz
-        style={style}
         tarefas={tarefas}
         excluirTarefa={excluirTarefa}
         validarTarefa={validarTarefa}

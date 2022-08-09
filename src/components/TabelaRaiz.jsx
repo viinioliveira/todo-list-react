@@ -23,11 +23,11 @@ export function TabelaRaiz(props) {
           </Tr>
         </Thead>
         <Tbody>
-          {props.tarefas.map((tarefa, index) => {
-            if (tarefa.excluido != true) {
+          {props.tarefas?.map((tarefa, index) => {
+            if (!tarefa.excluido) {
               return (
                 <Tarefa
-                  style={props.style}
+                  style={tarefa.validado ? "validado" : "descricao"}
                   key={index}
                   tarefa={tarefa}
                   excluirTarefa={props.excluirTarefa}
