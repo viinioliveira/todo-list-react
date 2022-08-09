@@ -1,4 +1,16 @@
 div {
     display: flex;
     flex-direction: row;
+    width: 100%;
+
+}
+
+.button_add {
+    display: flex;
+    justify-content: flex-end;
+    width: 15%;
+}
+
+.entrada_dados {
+    width: 100%;
 }

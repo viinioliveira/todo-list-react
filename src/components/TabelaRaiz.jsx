@@ -15,7 +15,7 @@ import styles from "../styles/tabelaRaiz.css";
 
 export function TabelaRaiz(props) {
   return (
-    <TableContainer>
+    <div className="table">
       <Table variant="simple">
         <Thead>
           <Tr>
@@ -38,6 +38,6 @@ export function TabelaRaiz(props) {
           })}
         </Tbody>
       </Table>
-    </TableContainer>
+    </div>
   );
 }

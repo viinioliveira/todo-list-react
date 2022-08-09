@@ -5,16 +5,20 @@ import styles from "../styles/entradaDados.css";
 export function EntradaDados(props) {
   return (
     <div>
-      <Input
-        value={props.descricao}
-        onChange={(e) => {
-          props.setDescricao(e.target.value);
-        }}
-        placeholder="O que você deseja fazer?"
-      />
-      <Button colorScheme="blue" onClick={props.salvarDados}>
-        Adicionar
-      </Button>
+      <div className="entrada_dados">
+        <Input
+          value={props.descricao}
+          onChange={(e) => {
+            props.setDescricao(e.target.value);
+          }}
+          placeholder="O que você deseja fazer?"
+        />
+      </div>
+      <div className="button_add">
+        <Button colorScheme="blue" onClick={props.salvarDados}>
+          Adicionar
+        </Button>
+      </div>
     </div>
   );
 }

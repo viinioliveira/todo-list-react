@@ -84,6 +84,7 @@ export function Home() {
 
   return (
     <div className="principal">
+      <h1 className="titulo">To-to list</h1>
       <EntradaDados
         tarefa={descricao}
         setDescricao={setDescricao}
