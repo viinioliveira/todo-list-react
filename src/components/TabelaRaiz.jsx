@@ -17,11 +17,6 @@ export function TabelaRaiz(props) {
   return (
     <div className="table">
       <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Tarefa</Th>
-          </Tr>
-        </Thead>
         <Tbody>
           {props.tarefas?.map((tarefa, index) => {
             if (!tarefa.excluido) {
